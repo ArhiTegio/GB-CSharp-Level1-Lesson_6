@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{67E88269-B4D5-4380-99E6-E9E858BBA6C9}</ProjectGuid>
+    <ProjectGuid>{E1BE632A-4E63-400A-B60C-AD8C1CB4A10C}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>GB_CSharp_Level1_Lesson_6</RootNamespace>
-    <AssemblyName>GB-CSharp-Level1-Lesson_6</AssemblyName>
+    <RootNamespace>_3_Collection</RootNamespace>
+    <AssemblyName>3_Collection</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -35,8 +35,7 @@
   <ItemGroup>
     <Reference Include="LibraryFastDecisions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Properties\LibraryFastDecisions.dll</HintPath>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>..\1_PresentationFuncDelegates\Properties\LibraryFastDecisions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -53,12 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\LibraryFastDecisions.dll" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\LibraryFastDecisions.dll" />
