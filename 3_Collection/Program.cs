@@ -13,20 +13,34 @@ namespace _3_Collection
 {
     delegate void SimpleDelegateBool(string[] x, Info info);
 
+    /// <summary>
+    /// Базовый класс выбранных студентов по параметрам студентов
+    /// </summary>
     class Info
     {
 
     }
-
+        
+    /// <summary>
+    /// Количество бакалавров и магистров
+    /// </summary>
     class SumBakalavrMagistr : Info
     {
         public int Bakalavr = 0;
         public int Magistr = 0;
     }
+
+    /// <summary>
+    /// Подсчет студентов по курсам
+    /// </summary>
     class LevelUn : Info
     {
         public int[] Level = new int[6];
     }
+
+    /// <summary>
+    /// Выборка студентов по параметрам
+    /// </summary>
     class Student : Info
     {
         public SortedDictionary<string, SortedDictionary<string, int>> S = new SortedDictionary<string, SortedDictionary<string, int>>()
@@ -41,6 +55,7 @@ namespace _3_Collection
 
     class Program
     {
+        //Подсчет бакалавров и магистров среди студентов
         public static List<SimpleDelegateBool> ListD = new List<SimpleDelegateBool>()
         {
             new SimpleDelegateBool ((x, d) =>
@@ -123,7 +138,9 @@ namespace _3_Collection
             }),
         };
 
-
+        /// <summary>
+        /// Функция проверки совпадения студента по параметрам
+        /// </summary>
         static Func <string, string, bool> СomparerString = (x, y) =>
         {
             if (x.Length <= y.Length)
@@ -131,6 +148,9 @@ namespace _3_Collection
             return false;
         };
 
+        /// <summary>
+        /// Параметры выбора студента
+        /// </summary>
         public class InfoFindInUniversityStudent
         {
             public string StartName = "";
@@ -143,8 +163,6 @@ namespace _3_Collection
             public string Performance = "";
             public string StartCity = "";
         }
-
-
 
         static void Main(string[] args)
         {
@@ -168,7 +186,6 @@ namespace _3_Collection
             // Запомним время в начале обработки данных
             DateTime dt = DateTime.Now;
             StreamReader sr = new StreamReader("..\\..\\students_1.csv");
-
             var info = new InfoFindInUniversityStudent();            
             Select(info, SamplingOptions(q.Question<string>("Выберите параметры выборки студентов (1 - имя, 2 - фамилия, 3 - университет, 4 - кафедра,  5 - сколько лет студенту" +
                 ", 6 - курс, 7 - успеваемость, 8 - город). Вводите все необходимые параметры в любом порядке:", new HashSet<char>() { '1', '2', '3', '4', '5', '6', '7', '8' }, true)));
@@ -191,9 +208,6 @@ namespace _3_Collection
                     ListD[3](s, stud);
                     ListD[4](s, stud);
                     GetStudent(listSelectStudent, info, s, СomparerString);
-                    //if (int.Parse(s[6]) < 5)
-                    //    bakalavr++;
-                    //else magistr++;
                 }
                 catch
                 {
@@ -210,15 +224,6 @@ namespace _3_Collection
             for (int i = 1; i < 7; i++)
                 Console.WriteLine($"Учашихся на на {i} курсе в возросте 18 лет:{stud.S["18"][i.ToString()]} 19 лет:{stud.S["19"][i.ToString()]} 20 лет:{stud.S["20"][i.ToString()]}");
 
-            //foreach (var v in stud.Sort1)
-            //    foreach (var s in v.Value)
-            //        Console.WriteLine($"{s[0]} {s[1]} в возрасте {v.Key}");
-
-            //foreach (var v in stud.Sort2)
-            //    foreach (var v2 in v.Value)
-            //        foreach (var s in v2.Value)
-            //            Console.WriteLine($"{s[0]} {s[1]} курса {v.Key} в возрасте {v2.Key}");
-
             foreach (var student in listSelectStudent)
                 Console.WriteLine($"{student[0]} {student[1]} курса {student[6]} в возрасте {student[5]}");
 
@@ -230,6 +235,13 @@ namespace _3_Collection
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Заполнение листа совпадающих студентов по параметрам
+        /// </summary>
+        /// <param name="list">Лист выбранных студентов</param>
+        /// <param name="info">Параметры выбора студента</param>
+        /// <param name="student">Проверяемый студент</param>
+        /// <param name="func">Функция проверки совпадения студента по параметрам</param>
         public static void GetStudent(List<string[]> list, InfoFindInUniversityStudent info, string[] student, Func<string, string, bool> func)
         {
             var b = true;
@@ -246,6 +258,9 @@ namespace _3_Collection
             if (b) list.Add(student);
         }
 
+        /// <summary>
+        /// Запрос данных у пользователя по подсчету студентов по параметрам
+        /// </summary>
         static Action<InfoFindInUniversityStudent, HashSet<int>> Select = (info, listSelect) =>
         {
             var q = new Questions();
@@ -276,14 +291,9 @@ namespace _3_Collection
             }
         };
 
-        //public static HashSet<int> SamplingOptions(string answer)
-        //{
-        //    var hash = new HashSet<int>();
-        //    foreach(var t in answer)            
-        //        hash.Add(int.Parse(new string(new char[] { t })));            
-        //    return hash;
-        //}
-
+        /// <summary>
+        /// Нахождение необходимых опций по подсчету студентов по параметрам
+        /// </summary>
         static Func<string, HashSet<int>> SamplingOptions = answer =>
         {
             var hash = new HashSet<int>();

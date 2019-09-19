@@ -43,22 +43,41 @@ namespace _1_PresentationFuncDelegates
 
             ex.Pause();
         }
+
+        /// <summary>
+        /// Метод вывода на экран
+        /// </summary>
         static void MyFunc(SimpleDelegate f, double w, double n)
         {
             WriteLine(f(w, n));
         }
 
+        /// <summary>
+        /// Функция вывода на экран
+        /// </summary>
         static Action<Func<double, double, double>, double, double> MyFuncB = (f, w, n) =>
         {
             WriteLine(f(w, n));
         };
 
+        /// <summary>
+        /// Функция a*x^2
+        /// </summary>
         static Func<double, double, double> MathFunc1b = (x, a) => a * (x * x);
-
+        
+        /// <summary>
+        /// Функция sin(x)
+        /// </summary>
         static Func<double, double, double> MathFunc2b = (x, a) => a * Math.Sin(x);
 
+        /// <summary>
+        /// Функция a*x^2
+        /// </summary>
         static double MathFunc1a (double x, double a) => a * (x * x);
-
+        
+        /// <summary>
+        /// Функция sin(x)
+        /// </summary>
         static double MathFunc2a (double x, double a) => a * Math.Sin(x);
     }
 
